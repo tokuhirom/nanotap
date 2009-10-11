@@ -16,6 +16,9 @@ nanotap is yet another TAP library for C/C++.
 
 # METHODS
 
+see L<nanotap.h> itself :P
+(XXX I need better documentation tool)
+
 # SEE ALSO
 
 [Test::More](http://search.cpan.org/search?mode=module&query=Test::More)
