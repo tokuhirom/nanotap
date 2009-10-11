@@ -1,0 +1,19 @@
+# NAME
+
+nanotap - yet another TAP library for C/C++
+
+# SYSNOPSIS
+
+    #include <nanotap/nanotap.h>
+    int main() {
+        ok(true, "ok");
+        done_testing();
+    }
+
+# DESCRIPTION
+
+nanotap is yet another TAP library for C/C++.
+
+# SEE ALSO
+
+[Test::More](http://search.cpan.org/search?mode=module&query=Test::More)
