@@ -1,0 +1,19 @@
+=head1 NAME
+
+nanotap - yet another TAP library for C/C++
+
+=head1 SYSNOPSIS
+
+    #include <nanotap/nanotap.h>
+    int main() {
+        ok(true, "ok");
+        done_testing();
+    }
+
+=head1 DESCRIPTION
+
+nanotap is yet another TAP library for C/C++.
+
+=head1 SEE ALSO
+
+L<Test::More>
