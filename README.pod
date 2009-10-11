@@ -16,9 +16,8 @@ nanotap is yet another TAP library for C/C++.
 
 =head1 METHODS
 
-=over 4
-
-=back
+see L<nanotap.h> itself :P
+(XXX I need better documentation tool)
 
 =head1 SEE ALSO
 
