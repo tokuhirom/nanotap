@@ -7,4 +7,8 @@ $e->program('t/02_cpp', 't/02_cpp.cc');
 
 tests 't/*.t';
 
+if ($ENV{USER} eq 'tokuhirom') {
+    `pod2markdown < README.pod > README.mkdn`;
+}
+
 WriteMakefileForC;
