@@ -1,4 +1,4 @@
 t/01_c
-t/02_tap
+t/02_cpp
 *.o
 a.out
