@@ -24,9 +24,12 @@ not ok 8 - bad
 not ok 9 - bad
   # got      : NG
   # expected : OK
-ok 10 - 
-ok 11 - ok
-1..11
+ok 10 - good
+ok 11 - good
+ok 12 - 
+ok 13 - 
+ok 14 - ok
+1..14
 ...
 
 is join('', <$err>), <<'...';

@@ -66,6 +66,19 @@ static void is(T got, T expected, const char *msg) {
     }
 }
 
+static void is(const std::string& got, const char *expected, const char *msg) {
+    is(got, std::string(expected), msg);
+}
+
+static void is(const char* got, const std::string & expected, const char *msg) {
+    is(std::string(got), expected, msg);
+}
+
+template <class T, class U>
+static void is(T got, U expected) {
+    is(got, std::string(expected), NULL);
+}
+
 /**
  * shorthand for lazy person
  */

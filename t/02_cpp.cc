@@ -13,6 +13,9 @@ int main() {
     is(std::string("OK"), std::string("OK"), "good");
     is(std::string("NG"), std::string("OK"), "bad");
     is(std::string("NG"), std::string("OK"), "bad");
+    is(std::string("OK"), "OK", "good");
+    is("OK", std::string("OK"), "good");
+    is("OK", std::string("OK"));
     ok(1);
     contains_string(std::string("YOaaa"), "aaa", "ok");
 
