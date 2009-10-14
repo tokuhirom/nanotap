@@ -58,7 +58,7 @@ t/01_c: t/01_c.o
 	env MACOSX_DEPLOYMENT_TARGET=10.3 cc  -o t/01_c t/01_c.o  
 
 t/01_c.o: t/01_c.c Makefile
-	/usr/bin/gcc-4.2    -c -o t/01_c.o t/01_c.c
+	/usr/bin/gcc-4.2  -Wall -Wextra  -c -o t/01_c.o t/01_c.c
 
 t/01_c.o: t/01_c.c t/../nanotap.h
 
@@ -66,7 +66,7 @@ t/02_cpp: t/02_cpp.o
 	g++  -o t/02_cpp t/02_cpp.o  
 
 t/02_cpp.o: t/02_cpp.cc Makefile
-	g++    -c -o t/02_cpp.o t/02_cpp.cc
+	g++  -Wall -Wextra  -c -o t/02_cpp.o t/02_cpp.cc
 
 t/02_cpp.o: t/02_cpp.cc t/../nanotap.h
 
