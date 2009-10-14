@@ -5,6 +5,12 @@
 #include <string.h>
 #include <stdlib.h>
 
+#ifdef __GNUC__
+#define NANOTAP_DECLARE static __attribute__((__used__))
+#else
+#define NANOTAP_DECLARE static
+#endif
+
 static int TEST_COUNT = 0;
 
 /**
@@ -12,21 +18,21 @@ static int TEST_COUNT = 0;
  * simple example) and uses that to determine if the test succeeded or
  * failed.  A true expression passes, a false one fails.  Very simple.
  */
-static void ok(int x, const char *msg) {
+NANOTAP_DECLARE void ok(int x, const char *msg) {
     printf("%s %d - %s\n", (x ? "ok" : "not ok"), ++TEST_COUNT, msg ? msg : "");
 }
 
 /**
  * display diagnostics message.
  */
-static void diag(const char *msg) {
+NANOTAP_DECLARE void diag(const char *msg) {
     fprintf(stderr, "# %s\n", msg ? msg : "");
 }
 
 /**
  * contains_string() searches for $substring in $string.
  */
-static void contains_string(const char *string, const char *substring, const char *msg) {
+NANOTAP_DECLARE void contains_string(const char *string, const char *substring, const char *msg) {
     ok(strstr(string, substring) != NULL, msg);
 }
 
@@ -34,7 +40,7 @@ static void contains_string(const char *string, const char *substring, const cha
  *  If you don’t know how many tests you’re going to run, you can issue
  * the plan when you’re done running tests.
  */
-static void done_testing() {
+NANOTAP_DECLARE void done_testing() {
     printf("1..%d\n", TEST_COUNT);
     exit(0);
 }
@@ -48,7 +54,7 @@ static void done_testing() {
 /**
  * shorthand for std::string
  */
-static void diag(const std::string &msg) {
+NANOTAP_DECLARE void diag(const std::string &msg) {
     diag(msg.c_str());
 }
 
@@ -56,7 +62,7 @@ static void diag(const std::string &msg) {
  * flexible is() based on C++ template.
  */
 template <class T>
-static void is(T got, T expected, const char *msg) {
+NANOTAP_DECLARE void is(T got, T expected, const char *msg) {
     if (got == expected) {
         ok(true, msg);
     } else {
@@ -66,30 +72,30 @@ static void is(T got, T expected, const char *msg) {
     }
 }
 
-static void is(const std::string& got, const char *expected, const char *msg) {
+NANOTAP_DECLARE void is(const std::string& got, const char *expected, const char *msg) {
     is(got, std::string(expected), msg);
 }
 
-static void is(const char* got, const std::string & expected, const char *msg) {
+NANOTAP_DECLARE void is(const char* got, const std::string & expected, const char *msg) {
     is(std::string(got), expected, msg);
 }
 
 template <class T, class U>
-static void is(T got, U expected) {
+NANOTAP_DECLARE void is(T got, U expected) {
     is(got, std::string(expected), NULL);
 }
 
 /**
  * shorthand for lazy person
  */
-static void ok(int x) {
+NANOTAP_DECLARE void ok(int x) {
     ok(x, "");
 }
 
 /**
  * shorthand for std::string
  */
-static void contains_string(const std::string &str, const char *substr, const char *msg) {
+NANOTAP_DECLARE void contains_string(const std::string &str, const char *substr, const char *msg) {
     contains_string(str.c_str(), substr, msg);
 }
 #endif
