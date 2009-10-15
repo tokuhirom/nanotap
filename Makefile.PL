@@ -7,7 +7,7 @@ $e->program('t/02_cpp', 't/02_cpp.cc');
 
 tests 't/*.t';
 
-if ($ENV{USER} eq 'tokuhirom') {
+if ($ENV{USER} eq 'tokuhirom' && eval "use Pod::Markdown;1") {
     `pod2markdown < README.pod > README.mkdn`;
 }
 
