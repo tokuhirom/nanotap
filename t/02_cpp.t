@@ -11,6 +11,7 @@ my $pid = open3($wtr, $rdr, $err, './t/02_cpp');
 is join('', <$rdr>), <<'...';
 ok 1 - ok
 not ok 2 - ng
+# NOTE
 not ok 3 - not contains
 ok 4 - contains
 ok 5 - good
@@ -33,7 +34,7 @@ ok 14 - ok
 ...
 
 is join('', <$err>), <<'...';
-# hehe
+# DIAG
 ...
 
 waitpid($pid, 0);
