@@ -28,6 +28,12 @@ NANOTAP_DECLARE void ok(int x, const char *msg) {
 NANOTAP_DECLARE void diag(const char *msg) {
     fprintf(stderr, "# %s\n", msg ? msg : "");
 }
+/**
+ * display note message.
+ */
+NANOTAP_DECLARE void note(const char *msg) {
+    fprintf(stdout, "# %s\n", msg ? msg : "");
+}
 
 /**
  * contains_string() searches for $substring in $string.

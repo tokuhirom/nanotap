@@ -3,7 +3,8 @@
 int main() {
     ok(1, "ok");
     ok(0, "ng");
-    diag("hehe");
+    diag("DIAG");
+    note("NOTE");
     contains_string("yoyo", "ya", "not contains");
     contains_string("yoyo", "yo", "contains");
     done_testing();
