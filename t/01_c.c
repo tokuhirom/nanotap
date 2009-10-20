@@ -8,4 +8,5 @@ int main() {
     contains_string("yoyo", "ya", "not contains");
     contains_string("yoyo", "yo", "contains");
     done_testing();
+    return 0;
 }
