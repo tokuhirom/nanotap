@@ -1,3 +1,5 @@
+sub readme_markdown_from { }
+
 use inc::Module::Install;
 name 'Clib-nanotap';
 
@@ -8,8 +10,6 @@ $e->program('t/02_cpp', 't/02_cpp.cc');
 
 tests 't/*.t';
 
-if ($ENV{USER} eq 'tokuhirom') {
-    `pod2markdown < README.pod > README.mkdn`;
-}
+readme_markdown_from 'README.pod';
 
 WriteMakefileForC;
