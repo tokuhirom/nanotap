@@ -2,7 +2,7 @@
 package Module::Install::ForC;
 use strict;
 use warnings;
-our $VERSION = '0.07';
+our $VERSION = '0.08';
 use 5.008000;
 use Module::Install::ForC::Env;
 use Config;              # first released with perl 5.00307
@@ -21,7 +21,7 @@ our %INSTALL;
 sub env_for_c {
     my $self = shift;
     $self->admin->copy_package('Module::Install::ForC::Env');
-    Module::Install::ForC::Env->new(@_)
+    Module::Install::ForC::Env->new($self, @_)
 }
 sub is_linux () { $^O eq 'linux'  }
 sub is_mac   () { $^O eq 'darwin' }
@@ -41,30 +41,24 @@ sub _gen_makefile {
     $self->name(File::Basename::basename($FindBin::Bin)) unless $self->name;
     $self->version('') unless defined $self->version;
 
+    my $mm = ExtUtils::MM->new(
+        {
+            NAME         => $self->name,
+            VERSION      => $self->version,
+        }
+    );
+    my $mm_params = join("\n", map { $_.'='.($mm->{$_} || '') } qw/FIRST_MAKEFILE MOD_INSTALL ABSPERL ABSPERLRUN VERBINST UNINST PERM_DIR PERL PREOP TRUE TAR RM_F RM_RF NOECHO NOOP INSTALLARCHLIB INSTALL_BASE DIST_CP DIST_DEFAULT POSTOP COMPRESS TARFLAGS TO_UNIX PERLRUN DISTVNAME VERSION NAME ECHO/);
     (my $make = <<"...") =~ s/^[ ]{4}/\t/gmsx;
-RM=$Config{rm}
-NAME=@{[ $self->name ]}
-FIRST_MAKEFILE=Makefile
-NOECHO=@
-TRUE = true
-NOOP = \$(TRUE)
-PERL = $^X
-VERSION = @{[ $self->version ]}
-DISTVNAME = \$(NAME)-\$(VERSION)
-PREOP = \$(PERL) -I. "-MModule::Install::Admin" -e "dist_preop(q(\$(DISTVNAME)))"
-TO_UNIX = \$(NOECHO) \$(NOOP)
-TAR = tar
-TARFLAGS = cvf
-RM_RF = rm -rf
-COMPRESS = gzip --best
-POSTOP = \$(NOECHO) \$(NOOP)
-DIST_DEFAULT = tardist
-DIST_CP = best
-PERLRUN = \$(PERL)
+$mm_params
 TEST_VERBOSE=0
 TEST_FILES=@{[ $self->tests || '' ]}
 
+.PHONY: all config static dynamic test linkext manifest blibdirs clean realclean disttest distdir
+
 all: @Module::Install::ForC::TARGETS
+
+config :: \$(FIRST_MAKEFILE)
+    \$(NOECHO) \$(NOOP)
 
 test: @TESTS
     PERL_DL_NONLAZY=1 \$(PERLRUN) "-MExtUtils::Command::MM" "-e" "test_harness(\$(TEST_VERBOSE), 'inc')" \$(TEST_FILES)
@@ -88,17 +82,20 @@ distdir:
         -e "manicopy(maniread(),'\$(DISTVNAME)', '\$(DIST_CP)');"
 
 clean:
-	\$(RM) @Module::Install::ForC::TARGETS @{[ keys %Module::Install::ForC::OBJECTS ]}
-	\$(RM) Makefile
+	\$(RM_F) @Module::Install::ForC::TARGETS @{[ keys %Module::Install::ForC::OBJECTS ]}
+	\$(RM_F) Makefile
 	@{[ $Config{rm_try} || '' ]}
 
-install: all
+install: all config
 	@{[ join("\n\t", map { @{ $_ } } values %Module::Install::ForC::INSTALL) ]}
+    \$(NOECHO) \$(NOOP)
 
 manifest:
 	$^X -MExtUtils::Manifest -e 'ExtUtils::Manifest::mkmanifest()'
 
 @{[ $Module::Install::ForC::POSTAMBLE || '' ]}
+
+@{[ $self->postamble || '' ]}
 ...
     $make;
 }
@@ -106,4 +103,4 @@ manifest:
 1;
 __END__
 
-#line 197
+#line 194
