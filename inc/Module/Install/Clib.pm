@@ -17,7 +17,7 @@ sub clib_header {
     my $dst = File::Spec->catfile('$(INSTALLARCHLIB)', 'auto', 'Clib', 'include', $distname, $filename);
     $self->postamble(<<"END_MAKEFILE");
 config ::
-\t\t\$(NOECHO) \$(ECHO) Installing $dst
+\t\t\$(ECHO) Installing $dst
 \t\t$installer "$filename" $dst
 
 END_MAKEFILE
@@ -30,7 +30,7 @@ sub clib_library {
     my $dst = File::Spec->catfile('$(INSTALLARCHLIB)', 'auto', 'Clib', 'lib', $filename);
     $self->postamble(<<"END_MAKEFILE");
 config ::
-\t\t\$(NOECHO) \$(ECHO) Installing $dst
+\t\t\$(ECHO) Installing $dst
 \t\t$installer "$filename" $dst
 
 END_MAKEFILE
@@ -48,4 +48,4 @@ sub clib_setup {
 1;
 __END__
 
-#line 102
+#line 106
