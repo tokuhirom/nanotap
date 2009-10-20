@@ -1,10 +1,10 @@
 RM=rm
-NAME=nanotap
+NAME=Clib-nanotap
 FIRST_MAKEFILE=Makefile
 NOECHO=@
 TRUE = true
 NOOP = $(TRUE)
-PERL = perl
+PERL = /usr/local/bin/perl
 VERSION = 
 DISTVNAME = $(NAME)-$(VERSION)
 PREOP = $(PERL) -I. "-MModule::Install::Admin" -e "dist_preop(q($(DISTVNAME)))"
@@ -52,13 +52,13 @@ install: all
 	
 
 manifest:
-	perl -MExtUtils::Manifest -e 'ExtUtils::Manifest::mkmanifest()'
+	/usr/local/bin/perl -MExtUtils::Manifest -e 'ExtUtils::Manifest::mkmanifest()'
 
 t/01_c: t/01_c.o
-	env MACOSX_DEPLOYMENT_TARGET=10.3 cc  -o t/01_c t/01_c.o  
+	cc  -o t/01_c t/01_c.o  
 
 t/01_c.o: t/01_c.c Makefile
-	/usr/bin/gcc-4.2  -Wall -Wextra  -c -o t/01_c.o t/01_c.c
+	cc  -Wall -Wextra  -c -o t/01_c.o t/01_c.c
 
 t/01_c.o: t/01_c.c t/../nanotap.h
 

@@ -1,4 +1,5 @@
 use inc::Module::Install;
+name 'Clib-nanotap';
 
 my $e = env_for_c();
 $e->enable_warnings;
