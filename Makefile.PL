@@ -2,6 +2,7 @@ sub readme_markdown_from { }
 
 use inc::Module::Install;
 name 'Clib-nanotap';
+version 0.01;
 
 my $e = env_for_c();
 $e->enable_warnings;

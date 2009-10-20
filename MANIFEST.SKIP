@@ -1,6 +1,6 @@
-t/01_c
+t/01_c$
 t/01_c.o
-t/02_cpp
+t/02_cpp$
 t/02_cpp.o
 \.git/
 \bRCS\b

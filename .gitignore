@@ -3,3 +3,4 @@ t/02_cpp
 *.o
 a.out
 Makefile
+MANIFEST
