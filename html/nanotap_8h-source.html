@@ -32,22 +32,40 @@
 <a name="l00018"></a>00018 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
 <a name="l00019"></a>00019 <span class="preprocessor"></span>
 <a name="l00020"></a>00020 <span class="keyword">static</span> <span class="keywordtype">int</span> TEST_COUNT = 0;
-<a name="l00021"></a>00021 
+<a name="l00021"></a>00021 <span class="comment"></span>
+<a name="l00022"></a>00022 <span class="comment">/**</span>
+<a name="l00023"></a>00023 <span class="comment"> * This simply evaluates any expression ("$got eq $expected" is just a</span>
+<a name="l00024"></a>00024 <span class="comment"> * simple example) and uses that to determine if the test succeeded or</span>
+<a name="l00025"></a>00025 <span class="comment"> * failed.  A true expression passes, a false one fails.  Very simple.</span>
+<a name="l00026"></a>00026 <span class="comment"> */</span>
 <a name="l00027"></a>00027 NANOTAP_INLINE NANOTAP_DECLARE <span class="keywordtype">void</span> ok(<span class="keywordtype">int</span> x, <span class="keyword">const</span> <span class="keywordtype">char</span> *msg) {
 <a name="l00028"></a>00028     printf(<span class="stringliteral">"%s %d - %s\n"</span>, (x ? <span class="stringliteral">"ok"</span> : <span class="stringliteral">"not ok"</span>), ++TEST_COUNT, msg ? msg : <span class="stringliteral">""</span>);
 <a name="l00029"></a>00029 }
-<a name="l00030"></a>00030 
+<a name="l00030"></a>00030 <span class="comment"></span>
+<a name="l00031"></a>00031 <span class="comment">/**</span>
+<a name="l00032"></a>00032 <span class="comment"> * display diagnostics message.</span>
+<a name="l00033"></a>00033 <span class="comment"> */</span>
 <a name="l00034"></a>00034 NANOTAP_INLINE NANOTAP_DECLARE <span class="keywordtype">void</span> diag(<span class="keyword">const</span> <span class="keywordtype">char</span> *msg) {
 <a name="l00035"></a>00035     fprintf(stderr, <span class="stringliteral">"# %s\n"</span>, msg ? msg : <span class="stringliteral">""</span>);
-<a name="l00036"></a>00036 }
+<a name="l00036"></a>00036 }<span class="comment"></span>
+<a name="l00037"></a>00037 <span class="comment">/**</span>
+<a name="l00038"></a>00038 <span class="comment"> * display note message.</span>
+<a name="l00039"></a>00039 <span class="comment"> */</span>
 <a name="l00040"></a>00040 NANOTAP_INLINE NANOTAP_DECLARE <span class="keywordtype">void</span> note(<span class="keyword">const</span> <span class="keywordtype">char</span> *msg) {
 <a name="l00041"></a>00041     fprintf(stdout, <span class="stringliteral">"# %s\n"</span>, msg ? msg : <span class="stringliteral">""</span>);
 <a name="l00042"></a>00042 }
-<a name="l00043"></a>00043 
+<a name="l00043"></a>00043 <span class="comment"></span>
+<a name="l00044"></a>00044 <span class="comment">/**</span>
+<a name="l00045"></a>00045 <span class="comment"> * contains_string() searches for $substring in $string.</span>
+<a name="l00046"></a>00046 <span class="comment"> */</span>
 <a name="l00047"></a>00047 NANOTAP_INLINE NANOTAP_DECLARE <span class="keywordtype">void</span> contains_string(<span class="keyword">const</span> <span class="keywordtype">char</span> *<span class="keywordtype">string</span>, <span class="keyword">const</span> <span class="keywordtype">char</span> *substring, <span class="keyword">const</span> <span class="keywordtype">char</span> *msg) {
 <a name="l00048"></a>00048     ok(strstr(<span class="keywordtype">string</span>, substring) != NULL, msg);
 <a name="l00049"></a>00049 }
-<a name="l00050"></a>00050 
+<a name="l00050"></a>00050 <span class="comment"></span>
+<a name="l00051"></a>00051 <span class="comment">/**</span>
+<a name="l00052"></a>00052 <span class="comment"> *  If you don’t know how many tests you’re going to run, you can issue</span>
+<a name="l00053"></a>00053 <span class="comment"> * the plan when you’re done running tests.</span>
+<a name="l00054"></a>00054 <span class="comment"> */</span>
 <a name="l00055"></a>00055 NANOTAP_INLINE NANOTAP_DECLARE <span class="keywordtype">void</span> done_testing() {
 <a name="l00056"></a>00056     printf(<span class="stringliteral">"1..%d\n"</span>, TEST_COUNT);
 <a name="l00057"></a>00057     exit(0);
@@ -58,11 +76,17 @@
 <a name="l00062"></a>00062 
 <a name="l00063"></a>00063 <span class="preprocessor">#include &lt;string&gt;</span>
 <a name="l00064"></a>00064 <span class="preprocessor">#include &lt;iostream&gt;</span>
-<a name="l00065"></a>00065 
+<a name="l00065"></a>00065 <span class="comment"></span>
+<a name="l00066"></a>00066 <span class="comment">/**</span>
+<a name="l00067"></a>00067 <span class="comment"> * shorthand for std::string</span>
+<a name="l00068"></a>00068 <span class="comment"> */</span>
 <a name="l00069"></a>00069 <span class="keyword">inline</span> NANOTAP_DECLARE <span class="keywordtype">void</span> diag(<span class="keyword">const</span> std::string &amp;msg) {
 <a name="l00070"></a>00070     diag(msg.c_str());
 <a name="l00071"></a>00071 }
-<a name="l00072"></a>00072 
+<a name="l00072"></a>00072 <span class="comment"></span>
+<a name="l00073"></a>00073 <span class="comment">/**</span>
+<a name="l00074"></a>00074 <span class="comment"> * flexible is() based on C++ template.</span>
+<a name="l00075"></a>00075 <span class="comment"> */</span>
 <a name="l00076"></a>00076 <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt;
 <a name="l00077"></a>00077 <span class="keyword">inline</span> NANOTAP_DECLARE <span class="keywordtype">void</span> is(T got, T expected, <span class="keyword">const</span> <span class="keywordtype">char</span> *msg) {
 <a name="l00078"></a>00078     <span class="keywordflow">if</span> (got == expected) {
@@ -86,11 +110,17 @@
 <a name="l00096"></a>00096 <span class="keyword">inline</span> NANOTAP_DECLARE <span class="keywordtype">void</span> is(T got, U expected) {
 <a name="l00097"></a>00097     is(got, std::string(expected), NULL);
 <a name="l00098"></a>00098 }
-<a name="l00099"></a>00099 
+<a name="l00099"></a>00099 <span class="comment"></span>
+<a name="l00100"></a>00100 <span class="comment">/**</span>
+<a name="l00101"></a>00101 <span class="comment"> * shorthand for lazy person</span>
+<a name="l00102"></a>00102 <span class="comment"> */</span>
 <a name="l00103"></a>00103 <span class="keyword">inline</span> NANOTAP_DECLARE <span class="keywordtype">void</span> ok(<span class="keywordtype">int</span> x) {
 <a name="l00104"></a>00104     ok(x, <span class="stringliteral">""</span>);
 <a name="l00105"></a>00105 }
-<a name="l00106"></a>00106 
+<a name="l00106"></a>00106 <span class="comment"></span>
+<a name="l00107"></a>00107 <span class="comment">/**</span>
+<a name="l00108"></a>00108 <span class="comment"> * shorthand for std::string</span>
+<a name="l00109"></a>00109 <span class="comment"> */</span>
 <a name="l00110"></a>00110 <span class="keyword">inline</span> NANOTAP_DECLARE <span class="keywordtype">void</span> contains_string(<span class="keyword">const</span> std::string &amp;str, <span class="keyword">const</span> <span class="keywordtype">char</span> *substr, <span class="keyword">const</span> <span class="keywordtype">char</span> *msg) {
 <a name="l00111"></a>00111     contains_string(str.c_str(), substr, msg);
 <a name="l00112"></a>00112 }
@@ -98,7 +128,7 @@
 <a name="l00114"></a>00114 <span class="preprocessor"></span>
 <a name="l00115"></a>00115 <span class="preprocessor">#endif </span><span class="comment">/* NANOTAP_H_ */</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Wed Oct 21 10:16:02 2009 by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Wed Oct 21 11:08:56 2009 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>
