@@ -1,6 +1,6 @@
 # NAME
 
-nanotap - yet another TAP library for C/C++
+Clib::nanotap - yet another TAP library for C/C++
 
 # SYSNOPSIS
 

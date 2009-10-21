@@ -1,6 +1,11 @@
+package Clib::nanotap;
+our $VERSION = '0.01_03';
+1;
+__END__
+
 =head1 NAME
 
-nanotap - yet another TAP library for C/C++
+Clib::nanotap - yet another TAP library for C/C++
 
 =head1 SYSNOPSIS
 

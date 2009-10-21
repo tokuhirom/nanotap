@@ -4,3 +4,4 @@ t/02_cpp
 a.out
 Makefile
 MANIFEST
+inc/
