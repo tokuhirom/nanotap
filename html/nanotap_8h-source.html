@@ -12,7 +12,7 @@
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
   </div>
-<h1>nanotap.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#ifndef NANOTAP_H_</span>
+<h1>nanotap.h</h1><a href="nanotap_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#ifndef NANOTAP_H_</span>
 <a name="l00002"></a>00002 <span class="preprocessor"></span><span class="preprocessor">#define NANOTAP_H_</span>
 <a name="l00003"></a>00003 <span class="preprocessor"></span>
 <a name="l00004"></a>00004 <span class="preprocessor">#include &lt;stdio.h&gt;</span>
@@ -22,13 +22,13 @@
 <a name="l00008"></a>00008 <span class="preprocessor">#ifdef __GNUC__</span>
 <a name="l00009"></a>00009 <span class="preprocessor"></span><span class="preprocessor">#define NANOTAP_DECLARE static __attribute__((__used__))</span>
 <a name="l00010"></a>00010 <span class="preprocessor"></span><span class="preprocessor">#else</span>
-<a name="l00011"></a>00011 <span class="preprocessor"></span><span class="preprocessor">#define NANOTAP_DECLARE static</span>
+<a name="l00011"></a><a class="code" href="nanotap_8h.html#a5cecf2a751da044bdbe2ca26f1524c6">00011</a> <span class="preprocessor"></span><span class="preprocessor">#define NANOTAP_DECLARE static</span>
 <a name="l00012"></a>00012 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
 <a name="l00013"></a>00013 <span class="preprocessor"></span>
 <a name="l00014"></a>00014 <span class="preprocessor">#ifdef __cplusplus</span>
 <a name="l00015"></a>00015 <span class="preprocessor"></span><span class="preprocessor">#define NANOTAP_INLINE inline</span>
 <a name="l00016"></a>00016 <span class="preprocessor"></span><span class="preprocessor">#else</span>
-<a name="l00017"></a>00017 <span class="preprocessor"></span><span class="preprocessor">#define NANOTAP_INLINE __inline__</span>
+<a name="l00017"></a><a class="code" href="nanotap_8h.html#79a1f60355aaadb9dfd89f9d64b7edb3">00017</a> <span class="preprocessor"></span><span class="preprocessor">#define NANOTAP_INLINE __inline__</span>
 <a name="l00018"></a>00018 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
 <a name="l00019"></a>00019 <span class="preprocessor"></span>
 <a name="l00020"></a>00020 <span class="keyword">static</span> <span class="keywordtype">int</span> TEST_COUNT = 0;
@@ -38,35 +38,35 @@
 <a name="l00024"></a>00024 <span class="comment"> * simple example) and uses that to determine if the test succeeded or</span>
 <a name="l00025"></a>00025 <span class="comment"> * failed.  A true expression passes, a false one fails.  Very simple.</span>
 <a name="l00026"></a>00026 <span class="comment"> */</span>
-<a name="l00027"></a>00027 NANOTAP_INLINE NANOTAP_DECLARE <span class="keywordtype">void</span> ok(<span class="keywordtype">int</span> x, <span class="keyword">const</span> <span class="keywordtype">char</span> *msg) {
+<a name="l00027"></a><a class="code" href="nanotap_8h.html#9bfe906faa34edda6856bb7d4cceedff">00027</a> <a class="code" href="nanotap_8h.html#79a1f60355aaadb9dfd89f9d64b7edb3">NANOTAP_INLINE</a> <a class="code" href="nanotap_8h.html#a5cecf2a751da044bdbe2ca26f1524c6">NANOTAP_DECLARE</a> <span class="keywordtype">void</span> <a class="code" href="nanotap_8h.html#9bfe906faa34edda6856bb7d4cceedff" title="This simply evaluates any expression (&amp;quot;$got eq $expected&amp;quot; is just a simple...">ok</a>(<span class="keywordtype">int</span> x, <span class="keyword">const</span> <span class="keywordtype">char</span> *msg) {
 <a name="l00028"></a>00028     printf(<span class="stringliteral">"%s %d - %s\n"</span>, (x ? <span class="stringliteral">"ok"</span> : <span class="stringliteral">"not ok"</span>), ++TEST_COUNT, msg ? msg : <span class="stringliteral">""</span>);
 <a name="l00029"></a>00029 }
 <a name="l00030"></a>00030 <span class="comment"></span>
 <a name="l00031"></a>00031 <span class="comment">/**</span>
 <a name="l00032"></a>00032 <span class="comment"> * display diagnostics message.</span>
 <a name="l00033"></a>00033 <span class="comment"> */</span>
-<a name="l00034"></a>00034 NANOTAP_INLINE NANOTAP_DECLARE <span class="keywordtype">void</span> diag(<span class="keyword">const</span> <span class="keywordtype">char</span> *msg) {
+<a name="l00034"></a><a class="code" href="nanotap_8h.html#2e432f51579fbffd456e09c07e6932b3">00034</a> <a class="code" href="nanotap_8h.html#79a1f60355aaadb9dfd89f9d64b7edb3">NANOTAP_INLINE</a> <a class="code" href="nanotap_8h.html#a5cecf2a751da044bdbe2ca26f1524c6">NANOTAP_DECLARE</a> <span class="keywordtype">void</span> <a class="code" href="nanotap_8h.html#2e432f51579fbffd456e09c07e6932b3" title="display diagnostics message.">diag</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *msg) {
 <a name="l00035"></a>00035     fprintf(stderr, <span class="stringliteral">"# %s\n"</span>, msg ? msg : <span class="stringliteral">""</span>);
 <a name="l00036"></a>00036 }<span class="comment"></span>
 <a name="l00037"></a>00037 <span class="comment">/**</span>
 <a name="l00038"></a>00038 <span class="comment"> * display note message.</span>
 <a name="l00039"></a>00039 <span class="comment"> */</span>
-<a name="l00040"></a>00040 NANOTAP_INLINE NANOTAP_DECLARE <span class="keywordtype">void</span> note(<span class="keyword">const</span> <span class="keywordtype">char</span> *msg) {
+<a name="l00040"></a><a class="code" href="nanotap_8h.html#d955a413f82deac66e6082f6964492df">00040</a> <a class="code" href="nanotap_8h.html#79a1f60355aaadb9dfd89f9d64b7edb3">NANOTAP_INLINE</a> <a class="code" href="nanotap_8h.html#a5cecf2a751da044bdbe2ca26f1524c6">NANOTAP_DECLARE</a> <span class="keywordtype">void</span> <a class="code" href="nanotap_8h.html#d955a413f82deac66e6082f6964492df" title="display note message.">note</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *msg) {
 <a name="l00041"></a>00041     fprintf(stdout, <span class="stringliteral">"# %s\n"</span>, msg ? msg : <span class="stringliteral">""</span>);
 <a name="l00042"></a>00042 }
 <a name="l00043"></a>00043 <span class="comment"></span>
 <a name="l00044"></a>00044 <span class="comment">/**</span>
 <a name="l00045"></a>00045 <span class="comment"> * contains_string() searches for $substring in $string.</span>
 <a name="l00046"></a>00046 <span class="comment"> */</span>
-<a name="l00047"></a>00047 NANOTAP_INLINE NANOTAP_DECLARE <span class="keywordtype">void</span> contains_string(<span class="keyword">const</span> <span class="keywordtype">char</span> *<span class="keywordtype">string</span>, <span class="keyword">const</span> <span class="keywordtype">char</span> *substring, <span class="keyword">const</span> <span class="keywordtype">char</span> *msg) {
-<a name="l00048"></a>00048     ok(strstr(<span class="keywordtype">string</span>, substring) != NULL, msg);
+<a name="l00047"></a><a class="code" href="nanotap_8h.html#f4ff9f7adf907908742e77d1f7bbd915">00047</a> <a class="code" href="nanotap_8h.html#79a1f60355aaadb9dfd89f9d64b7edb3">NANOTAP_INLINE</a> <a class="code" href="nanotap_8h.html#a5cecf2a751da044bdbe2ca26f1524c6">NANOTAP_DECLARE</a> <span class="keywordtype">void</span> <a class="code" href="nanotap_8h.html#f4ff9f7adf907908742e77d1f7bbd915" title="contains_string() searches for $substring in $string.">contains_string</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *<span class="keywordtype">string</span>, <span class="keyword">const</span> <span class="keywordtype">char</span> *substring, <span class="keyword">const</span> <span class="keywordtype">char</span> *msg) {
+<a name="l00048"></a>00048     <a class="code" href="nanotap_8h.html#9bfe906faa34edda6856bb7d4cceedff" title="This simply evaluates any expression (&amp;quot;$got eq $expected&amp;quot; is just a simple...">ok</a>(strstr(<span class="keywordtype">string</span>, substring) != NULL, msg);
 <a name="l00049"></a>00049 }
 <a name="l00050"></a>00050 <span class="comment"></span>
 <a name="l00051"></a>00051 <span class="comment">/**</span>
 <a name="l00052"></a>00052 <span class="comment"> *  If you don’t know how many tests you’re going to run, you can issue</span>
 <a name="l00053"></a>00053 <span class="comment"> * the plan when you’re done running tests.</span>
 <a name="l00054"></a>00054 <span class="comment"> */</span>
-<a name="l00055"></a>00055 NANOTAP_INLINE NANOTAP_DECLARE <span class="keywordtype">void</span> done_testing() {
+<a name="l00055"></a><a class="code" href="nanotap_8h.html#a320cf3e8c2afec03c33fb3e199c7661">00055</a> <a class="code" href="nanotap_8h.html#79a1f60355aaadb9dfd89f9d64b7edb3">NANOTAP_INLINE</a> <a class="code" href="nanotap_8h.html#a5cecf2a751da044bdbe2ca26f1524c6">NANOTAP_DECLARE</a> <span class="keywordtype">void</span> <a class="code" href="nanotap_8h.html#a320cf3e8c2afec03c33fb3e199c7661" title="If you don’t know how many tests you’re going to run, you can issue the plan...">done_testing</a>() {
 <a name="l00056"></a>00056     printf(<span class="stringliteral">"1..%d\n"</span>, TEST_COUNT);
 <a name="l00057"></a>00057     exit(0);
 <a name="l00058"></a>00058 }
@@ -80,55 +80,55 @@
 <a name="l00066"></a>00066 <span class="comment">/**</span>
 <a name="l00067"></a>00067 <span class="comment"> * shorthand for std::string</span>
 <a name="l00068"></a>00068 <span class="comment"> */</span>
-<a name="l00069"></a>00069 <span class="keyword">inline</span> NANOTAP_DECLARE <span class="keywordtype">void</span> diag(<span class="keyword">const</span> std::string &amp;msg) {
-<a name="l00070"></a>00070     diag(msg.c_str());
+<a name="l00069"></a>00069 <span class="keyword">inline</span> <a class="code" href="nanotap_8h.html#a5cecf2a751da044bdbe2ca26f1524c6">NANOTAP_DECLARE</a> <span class="keywordtype">void</span> <a class="code" href="nanotap_8h.html#2e432f51579fbffd456e09c07e6932b3" title="display diagnostics message.">diag</a>(<span class="keyword">const</span> std::string &amp;msg) {
+<a name="l00070"></a>00070     <a class="code" href="nanotap_8h.html#2e432f51579fbffd456e09c07e6932b3" title="display diagnostics message.">diag</a>(msg.c_str());
 <a name="l00071"></a>00071 }
 <a name="l00072"></a>00072 <span class="comment"></span>
 <a name="l00073"></a>00073 <span class="comment">/**</span>
 <a name="l00074"></a>00074 <span class="comment"> * flexible is() based on C++ template.</span>
 <a name="l00075"></a>00075 <span class="comment"> */</span>
 <a name="l00076"></a>00076 <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt;
-<a name="l00077"></a>00077 <span class="keyword">inline</span> NANOTAP_DECLARE <span class="keywordtype">void</span> is(T got, T expected, <span class="keyword">const</span> <span class="keywordtype">char</span> *msg) {
+<a name="l00077"></a>00077 <span class="keyword">inline</span> <a class="code" href="nanotap_8h.html#a5cecf2a751da044bdbe2ca26f1524c6">NANOTAP_DECLARE</a> <span class="keywordtype">void</span> is(T got, T expected, <span class="keyword">const</span> <span class="keywordtype">char</span> *msg) {
 <a name="l00078"></a>00078     <span class="keywordflow">if</span> (got == expected) {
-<a name="l00079"></a>00079         ok(<span class="keyword">true</span>, msg);
+<a name="l00079"></a>00079         <a class="code" href="nanotap_8h.html#9bfe906faa34edda6856bb7d4cceedff" title="This simply evaluates any expression (&amp;quot;$got eq $expected&amp;quot; is just a simple...">ok</a>(<span class="keyword">true</span>, msg);
 <a name="l00080"></a>00080     } <span class="keywordflow">else</span> {
-<a name="l00081"></a>00081         ok(<span class="keyword">false</span>, msg);
+<a name="l00081"></a>00081         <a class="code" href="nanotap_8h.html#9bfe906faa34edda6856bb7d4cceedff" title="This simply evaluates any expression (&amp;quot;$got eq $expected&amp;quot; is just a simple...">ok</a>(<span class="keyword">false</span>, msg);
 <a name="l00082"></a>00082         std::cout &lt;&lt; <span class="stringliteral">"  # got      : "</span> &lt;&lt; got &lt;&lt; std::endl;
 <a name="l00083"></a>00083         std::cout &lt;&lt; <span class="stringliteral">"  # expected : "</span> &lt;&lt; expected &lt;&lt; std::endl;
 <a name="l00084"></a>00084     }
 <a name="l00085"></a>00085 }
 <a name="l00086"></a>00086 
-<a name="l00087"></a>00087 <span class="keyword">inline</span> NANOTAP_DECLARE <span class="keywordtype">void</span> is(<span class="keyword">const</span> std::string&amp; got, <span class="keyword">const</span> <span class="keywordtype">char</span> *expected, <span class="keyword">const</span> <span class="keywordtype">char</span> *msg) {
+<a name="l00087"></a>00087 <span class="keyword">inline</span> <a class="code" href="nanotap_8h.html#a5cecf2a751da044bdbe2ca26f1524c6">NANOTAP_DECLARE</a> <span class="keywordtype">void</span> is(<span class="keyword">const</span> std::string&amp; got, <span class="keyword">const</span> <span class="keywordtype">char</span> *expected, <span class="keyword">const</span> <span class="keywordtype">char</span> *msg) {
 <a name="l00088"></a>00088     is(got, std::string(expected), msg);
 <a name="l00089"></a>00089 }
 <a name="l00090"></a>00090 
-<a name="l00091"></a>00091 <span class="keyword">inline</span> NANOTAP_DECLARE <span class="keywordtype">void</span> is(<span class="keyword">const</span> <span class="keywordtype">char</span>* got, <span class="keyword">const</span> std::string &amp; expected, <span class="keyword">const</span> <span class="keywordtype">char</span> *msg) {
+<a name="l00091"></a>00091 <span class="keyword">inline</span> <a class="code" href="nanotap_8h.html#a5cecf2a751da044bdbe2ca26f1524c6">NANOTAP_DECLARE</a> <span class="keywordtype">void</span> is(<span class="keyword">const</span> <span class="keywordtype">char</span>* got, <span class="keyword">const</span> std::string &amp; expected, <span class="keyword">const</span> <span class="keywordtype">char</span> *msg) {
 <a name="l00092"></a>00092     is(std::string(got), expected, msg);
 <a name="l00093"></a>00093 }
 <a name="l00094"></a>00094 
 <a name="l00095"></a>00095 <span class="keyword">template</span> &lt;<span class="keyword">class</span> T, <span class="keyword">class</span> U&gt;
-<a name="l00096"></a>00096 <span class="keyword">inline</span> NANOTAP_DECLARE <span class="keywordtype">void</span> is(T got, U expected) {
+<a name="l00096"></a>00096 <span class="keyword">inline</span> <a class="code" href="nanotap_8h.html#a5cecf2a751da044bdbe2ca26f1524c6">NANOTAP_DECLARE</a> <span class="keywordtype">void</span> is(T got, U expected) {
 <a name="l00097"></a>00097     is(got, std::string(expected), NULL);
 <a name="l00098"></a>00098 }
 <a name="l00099"></a>00099 <span class="comment"></span>
 <a name="l00100"></a>00100 <span class="comment">/**</span>
 <a name="l00101"></a>00101 <span class="comment"> * shorthand for lazy person</span>
 <a name="l00102"></a>00102 <span class="comment"> */</span>
-<a name="l00103"></a>00103 <span class="keyword">inline</span> NANOTAP_DECLARE <span class="keywordtype">void</span> ok(<span class="keywordtype">int</span> x) {
-<a name="l00104"></a>00104     ok(x, <span class="stringliteral">""</span>);
+<a name="l00103"></a>00103 <span class="keyword">inline</span> <a class="code" href="nanotap_8h.html#a5cecf2a751da044bdbe2ca26f1524c6">NANOTAP_DECLARE</a> <span class="keywordtype">void</span> <a class="code" href="nanotap_8h.html#9bfe906faa34edda6856bb7d4cceedff" title="This simply evaluates any expression (&amp;quot;$got eq $expected&amp;quot; is just a simple...">ok</a>(<span class="keywordtype">int</span> x) {
+<a name="l00104"></a>00104     <a class="code" href="nanotap_8h.html#9bfe906faa34edda6856bb7d4cceedff" title="This simply evaluates any expression (&amp;quot;$got eq $expected&amp;quot; is just a simple...">ok</a>(x, <span class="stringliteral">""</span>);
 <a name="l00105"></a>00105 }
 <a name="l00106"></a>00106 <span class="comment"></span>
 <a name="l00107"></a>00107 <span class="comment">/**</span>
 <a name="l00108"></a>00108 <span class="comment"> * shorthand for std::string</span>
 <a name="l00109"></a>00109 <span class="comment"> */</span>
-<a name="l00110"></a>00110 <span class="keyword">inline</span> NANOTAP_DECLARE <span class="keywordtype">void</span> contains_string(<span class="keyword">const</span> std::string &amp;str, <span class="keyword">const</span> <span class="keywordtype">char</span> *substr, <span class="keyword">const</span> <span class="keywordtype">char</span> *msg) {
-<a name="l00111"></a>00111     contains_string(str.c_str(), substr, msg);
+<a name="l00110"></a>00110 <span class="keyword">inline</span> <a class="code" href="nanotap_8h.html#a5cecf2a751da044bdbe2ca26f1524c6">NANOTAP_DECLARE</a> <span class="keywordtype">void</span> <a class="code" href="nanotap_8h.html#f4ff9f7adf907908742e77d1f7bbd915" title="contains_string() searches for $substring in $string.">contains_string</a>(<span class="keyword">const</span> std::string &amp;str, <span class="keyword">const</span> <span class="keywordtype">char</span> *substr, <span class="keyword">const</span> <span class="keywordtype">char</span> *msg) {
+<a name="l00111"></a>00111     <a class="code" href="nanotap_8h.html#f4ff9f7adf907908742e77d1f7bbd915" title="contains_string() searches for $substring in $string.">contains_string</a>(str.c_str(), substr, msg);
 <a name="l00112"></a>00112 }
 <a name="l00113"></a>00113 <span class="preprocessor">#endif</span>
 <a name="l00114"></a>00114 <span class="preprocessor"></span>
 <a name="l00115"></a>00115 <span class="preprocessor">#endif </span><span class="comment">/* NANOTAP_H_ */</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Wed Oct 21 11:08:56 2009 by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Wed Oct 21 11:12:44 2009 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>
