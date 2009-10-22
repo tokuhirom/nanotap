@@ -3,12 +3,13 @@ use warnings;
 use IPC::Open3;
 use Test::More;
 use Symbol 'gensym';
+use t::Utils;
 
 my($wtr, $rdr, $err);
 $err = gensym;
 my $pid = open3($wtr, $rdr, $err, './t/02_cpp');
 
-is join('', <$rdr>), <<'...';
+is_ex(join('', <$rdr>), <<'...');
 ok 1 - ok
 not ok 2 - ng
 # NOTE
@@ -33,7 +34,7 @@ ok 14 - ok
 1..14
 ...
 
-is join('', <$err>), <<'...';
+is_ex(join('', <$err>), <<'...');
 # DIAG
 ...
 
