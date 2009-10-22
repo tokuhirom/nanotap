@@ -1,5 +1,5 @@
 package Clib::nanotap;
-our $VERSION = '0.01_03';
+our $VERSION = '0.02';
 1;
 __END__
 
