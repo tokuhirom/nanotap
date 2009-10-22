@@ -65,10 +65,13 @@ sub new {
         %platformvars,
         %args,
     };
+    if ($opt->{CXX} =~ /g\+\+$/) {
+        $opt->{LDMODULEFLAGS} = ['-shared'];
+    }
     for my $key (qw/CPPPATH LIBS CLIBPATH LDMODULEFLAGS CCFLAGS/) {
         $opt->{$key} = [$opt->{$key}] unless ref $opt->{$key};
     }
-    my $self = bless $opt, $class;
+    my $self = bless {mi => $mi, %$opt}, $class;
 
     # -g support
     if (scalar( grep{ $_ eq '-g' } @ARGV )) {
@@ -152,7 +155,7 @@ sub install {
     my $dst = File::Spec->catfile($self->{PREFIX}, $suffix);
     ($target =~ m{['"\n\{\}]}) and die "invalid file name for install: $target";
     ($suffix =~ m{['"\n\{\}]}) and die "invalid file name for install: $suffix";
-    push @{$Module::Install::ForC::INSTALL{$suffix}}, "\$(PERL) -e 'use File::Copy; File::Copy::copy(q{$target}, q{$dst}) or die qq{Copy failed: $!}'";
+    push @{$Module::Install::ForC::INSTALL{$suffix}}, qq[\$(CP) "$target" "$dst"];
 }
 
 sub try_cc {
@@ -167,7 +170,11 @@ sub try_cc {
     my $cmd = "$self->{CC} -o $executable @{[ $self->_libs ]} @{[ $self->_cpppath ]} @{ $self->{CCFLAGS} } $cfile";
     print "$cmd\n" if DEBUG;
     my $exit_status = _quiet_system($cmd);
-    WIFEXITED($exit_status) && WEXITSTATUS($exit_status) == 0 ? 1 : 0;
+    if ($^O eq 'MSWin32') {
+        return $exit_status == 0 ? 1 : 0;
+    } else {
+        return WIFEXITED($exit_status) && WEXITSTATUS($exit_status) == 0 ? 1 : 0;
+    }
 }
 
 # code substantially borrowed from IPC::Run3                                                                                          
@@ -297,7 +304,7 @@ sub test {
 
     $self->_push_postamble(<<"...");
 $test_file: $test_executable
-    \$(PERL) -e 'print "exec q{$test_executable} or die \$!"' > $test_file
+    \$(ABSPERLRUN) -I\$(INST_LIB) -e "print qq[exec q!$test_executable! or die \$!]" > $test_file
 
 ...
 
@@ -417,4 +424,4 @@ int main() {
 1;
 __END__
 
-#line 528
+#line 535
