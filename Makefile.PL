@@ -14,4 +14,5 @@ clib_header('nanotap.h');
 
 tests 't/*.t';
 
+test_requires 'Test::More' => 0.94;
 WriteMakefileForC;
