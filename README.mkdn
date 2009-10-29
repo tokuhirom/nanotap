@@ -22,3 +22,12 @@ see L<nanotap.h> itself :P
 # SEE ALSO
 
 [Test::More](http://search.cpan.org/search?mode=module&query=Test::More)
+
+# AUTHOR
+
+Tokuhiro Matsuno <tokuhirom ah! gmail.com>
+
+# LICENSE
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
