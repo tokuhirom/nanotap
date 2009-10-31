@@ -24,3 +24,11 @@ t/02_cpp.o
 ^\.shipit$
 \.git/
 README.mkdn
+\.exists$
+\bblib\b
+\binc\b
+^t/04_is_binary$
+/META.yml$
+/Makefile$
+\.o$
+\bpm_to_blib\b

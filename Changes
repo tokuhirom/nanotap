@@ -1,3 +1,9 @@
+0.04
+
+    - added is_binary
+    - added Module::Install::nanotap
+    - added docs
+
 0.03
 
     - no change
