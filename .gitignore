@@ -8,3 +8,4 @@ inc/
 *~
 *.exe
 *.swp
+t/04_is_binary

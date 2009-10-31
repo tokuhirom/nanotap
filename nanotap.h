@@ -110,6 +110,33 @@ inline NANOTAP_DECLARE void ok(int x) {
 inline NANOTAP_DECLARE void contains_string(const std::string &str, const char *substr, const char *msg) {
     contains_string(str.c_str(), substr, msg);
 }
+
+#include <sstream>
+
+/**
+ * test binary string
+ */
+inline NANOTAP_DECLARE void is_binary(const std::string &got, const std::string& expected, const char *msg) {
+    if (got.size() != expected.size()) {
+        ok(NULL, msg);
+        std::stringstream ss;
+        ss << "Expected " << expected.size() << " bytes chars, but got " << got.size() << " bytes chars";
+        diag(ss.str());
+        return;
+    }
+    for (size_t i=0; i<got.size(); i++) {
+        if (got[i] != expected[i]) {
+            ok(NULL, msg);
+
+            std::stringstream ss;
+            ss << "Expected " << std::hex << int(expected[i]) << " but got " << int(got[i]) << ", at " << i;
+            diag(ss.str());
+            return;
+        }
+    }
+    ok(true, msg);
+}
+
 #endif
 
 #endif /* NANOTAP_H_ */
