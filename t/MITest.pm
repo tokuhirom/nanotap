@@ -25,7 +25,7 @@ sub cleanup {
 }
 
 sub run_makefile_pl {
-    system $^X,  '-I../../lib/', 'Makefile.PL';
+    system $^X, @_, '-I../../lib/', 'Makefile.PL';
 }
 
 sub run_make {
