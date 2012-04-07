@@ -84,6 +84,11 @@ inline NANOTAP_DECLARE void is(T got, T expected, const char *msg) {
     }
 }
 
+template <class T>
+inline NANOTAP_DECLARE void is(T got, T expected) {
+    is(got, expected, "");
+}
+
 inline NANOTAP_DECLARE void is(const std::string& got, const char *expected, const char *msg) {
     is(got, std::string(expected), msg);
 }
@@ -118,7 +123,7 @@ inline NANOTAP_DECLARE void contains_string(const std::string &str, const char *
  */
 inline NANOTAP_DECLARE void is_binary(const std::string &got, const std::string& expected, const char *msg) {
     if (got.size() != expected.size()) {
-        ok(NULL, msg);
+        ok(0, msg);
         std::stringstream ss;
         ss << "Expected " << expected.size() << " bytes chars, but got " << got.size() << " bytes chars";
         diag(ss.str());
@@ -126,7 +131,7 @@ inline NANOTAP_DECLARE void is_binary(const std::string &got, const std::string&
     }
     for (size_t i=0; i<got.size(); i++) {
         if (got[i] != expected[i]) {
-            ok(NULL, msg);
+            ok(0, msg);
 
             std::stringstream ss;
             ss << "Expected " << std::hex << int(expected[i]) << " but got " << int(got[i]) << ", at " << i;
