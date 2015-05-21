@@ -1,0 +1,6 @@
+sudo: false
+language: c
+script:
+  - cmake .
+  - cmake --build . --target all
+  - cmake --build . --target test
