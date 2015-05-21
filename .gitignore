@@ -12,3 +12,8 @@ t/04_is_binary
 t/003_mi/blib/
 t/003_mi/META.yml
 t/003_mi/pm_to_blib
+/CMakeCache.txt
+/CMakeFiles/
+/CTestTestfile.cmake
+/Testing/
+/cmake_install.cmake
