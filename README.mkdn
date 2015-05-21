@@ -1,5 +1,7 @@
 # NAME
 
+[![Build Status](https://travis-ci.org/tokuhirom/nanotap.svg?branch=master)](https://travis-ci.org/tokuhirom/nanotap)
+
 Clib::nanotap - yet another TAP library for C/C++
 
 # SYSNOPSIS
